@@ -60,11 +60,11 @@ export default function Payment({
                        })
                          .then((response) => {
                            // receive payment result
-                           resolve();
+                           resolve(response);
                          })
                          .catch((error) => {
                            // handle error response when trying to create payment
-                           reject();
+                           reject(error);
                          })
                      });
                    
