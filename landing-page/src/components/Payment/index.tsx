@@ -28,7 +28,7 @@ export default function Payment({
             setLoading(true);
 
         const bricksBuilder = mp.bricks();
-        const renderPaymentBrick = async (bricksBuilder) => {
+        const renderPaymentBrick = async (bricksBuilder : any) => {
                     const settings = {
                        initialization: {
                          amount: 100, // total amount to be paid
