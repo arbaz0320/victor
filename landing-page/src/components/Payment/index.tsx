@@ -69,7 +69,7 @@ export default function Payment({
                      });
                    
                  },
-                 onError: (error) => {
+                 onError: (error:any) => {
                    // callback called for all Brick error cases
                    console.error(error);
                  },
