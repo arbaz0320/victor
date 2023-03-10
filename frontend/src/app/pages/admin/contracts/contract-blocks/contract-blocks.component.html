@@ -1,0 +1,109 @@
+<section class="section">
+  <div class="card mb-0">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title py-0">Blocos de contrato</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+
+    <div class="card-body p-2">
+
+      <nav ngbNav #nav="ngbNav" class="nav-tabs" [destroyOnHide]="false">
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Utilizados</a>
+          <ng-template ngbNavContent>
+            <ng-container *ngTemplateOutlet="someBlocks"></ng-container>
+          </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem>
+          <a ngbNavLink>Todos</a>
+          <ng-template ngbNavContent>
+            <ng-container *ngTemplateOutlet="allBlocks"></ng-container>
+          </ng-template>
+        </ng-container>
+      </nav>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+    </div>
+
+  </div>
+</section>
+
+<ng-template #someBlocks>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col">Tipo</th>
+        <th scope="col" class="text-end"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataSourceSomeBlocks">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.title }}</td>
+        <td>
+          <span *ngIf="item.type == 'block'">Bloco</span>
+          <span *ngIf="item.type != 'block'">Campo</span>
+        </td>
+        <td class="text-end">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-secondary me-1" (click)="openBloco(item)">
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div align="center" *ngIf="dataSourceSomeBlocks.length== 0">Nenhum registro encontrado</div>
+</ng-template>
+
+<ng-template #allBlocks>
+
+  <div class="row">
+    <div class="col-6 form-group">
+      <input type="text" class="form-control" placeholder="Pesquisar..." [(ngModel)]="filters.termo"
+        (keyup.enter)="getList()">
+    </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col" class="text-end">
+          <button type="button" class="btn btn-sm btn-sc" (click)="openBloco()">Novo Bloco</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataSource.data" (dblclick)="closeModal(item)">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.title }}</td>
+        <td class="text-end">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-secondary me-1" (click)="openBloco(item)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteQuestion(item)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="dataSource.data.length > 0" class="mr-2">
+    <ngb-pagination [collectionSize]="dataSource.total" [pageSize]="filters.per_page" [rotate]="true" [maxSize]="6"
+      [(page)]="filters.page" (pageChange)="getList()" [boundaryLinks]="true" class="d-flex justify-content-end">
+    </ngb-pagination>
+  </div>
+
+  <div align="center" *ngIf="dataSource.total == 0">Nenhum registro encontrado</div>
+</ng-template>

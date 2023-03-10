@@ -1,0 +1,144 @@
+
+////////// COLOR SYSTEM //////////
+
+$blue:              #5E50F9;
+$indigo:            #6610f2;
+$purple:            #6a008a;
+$pink:              #E91E63;
+$red:               #f96868;
+$orange:            #f2a654;
+$yellow:            #f6e84e;
+$green:             #46c35f;
+$teal:              #58d8a3;
+$cyan:              #57c7d4;
+$black:             #000;
+$white:             #ffffff;
+$white-smoke:       #f2f7f8;
+$violet:            #41478a;
+$darkslategray :    #2e383e;
+$dodger-blue :      #3498db;
+
+
+$colors: (
+  blue:             $blue,
+  indigo:           $indigo,
+  purple:           $purple,
+  pink:             $pink,
+  red:              $red,
+  orange:           $orange,
+  yellow:           $yellow,
+  green:            $green,
+  teal:             $teal,
+  cyan:             $cyan,
+  white:            $white,
+  gray:             #434a54,
+  gray-light:       #aab2bd,
+  gray-lighter:     #e8eff4,
+  gray-lightest:    #e6e9ed,
+  gray-dark:        #0f1531,
+  black:            #000000
+);
+
+
+$theme-colors: (
+  primary:         #001a4e,
+  secondary:       #5897b4,
+  success:         #00d663,
+  info:            #00b3ff,
+  warning:         #ffe671,
+  danger:          #ff696d,
+  light:           #506690,
+  dark:            #000000
+);
+
+$theme-gradient-colors: (
+  primary:         linear-gradient(230deg, #759bff, #843cf6),
+  secondary:       linear-gradient(to right, #e7ebf0, #868e96),
+  success:         linear-gradient(45deg, #7bffce, #30c93e),
+  info:            linear-gradient(to bottom, #0e4cfd, #6a8eff),
+  warning:         linear-gradient(135deg, #ffc480, #ff763b),
+  danger:          linear-gradient(316deg, #fc5286, #fbaaa2),
+  light:           linear-gradient(to right, #cfd9df 0%, #e2ebf0 100%),
+  dark:            linear-gradient(to right, #7d7979 0%, #000000 100%)
+);
+
+////////// COLOR SYSTEM //////////
+
+////////// COLOR VARIABLES //////////
+$content-bg: #fff;
+$border-color: #f1efef;
+
+////////// COLOR VARIABLES //////////
+
+
+
+////////// SOCIAL COLORS //////////
+
+$social-colors: (
+  twitter: #2caae1,
+  facebook: #3b579d,
+  google: #dc4a38,
+  linkedin: #0177b5,
+  pinterest: #cc2127,
+  youtube: #e52d27,
+  github: #333333,
+  behance: #1769ff,
+  dribbble: #ea4c89,
+  reddit: #ff4500
+);
+
+////////// SOCIAL COLORS //////////
+
+////////// FONTS//
+
+$type1:     'Rubik', sans-serif;
+
+$default-font-size: 0.937rem; // 14px as base font size
+
+$text-muted: #a7afb7;
+$body-color: #6c7293;
+
+$toggle-switch-bg: #ccc;
+
+
+ ////HEADER//////
+ $header-bg:url("../images/banner-bg.svg");
+ $header-color:#fff;
+ $nav-link-color:#fff;
+ $nav-link-hover-color:#fff;
+ $nav-link-active-color:#fff;
+ $nav-link-font-size:0.937rem;
+ $header-padding-x: 0;
+ $header-padding-y:0px;
+ $nav-link-padding: 0.625rem 1.25rem;
+ $navbar-bg: theme-color(secondary);
+ $active-bg:rgba(0,0,0,.2);
+ $mobile-menu-width: 280px;
+ $mobile-header-height: 71px;
+ $mobile-overlay-bg:rgba(0,0,0,.8);
+ ////HEADER//////
+
+ /////BUTTONS/////
+ $btn-border-radius: 50px;
+ $btn-font-size: 0.875rem;
+ $btn-padding-y: 11px;
+$btn-padding-x: 30px;
+ /////BUTTONS/////
+
+ $font-weight-bold: 600;
+$grid-gutter-width: 28px;
+$action-transition-duration: 0.25s;
+$action-transition-timing-function: ease;
+
+// $testimonial-bg:#a70ff6 url("../images/testimonial-bg.svg");
+$testimonial-nav-color:#d8d8d8;
+
+$input-padding-y: 1.25rem;
+$input-padding-x: 1.25rem;
+$input-placeholder-color: #919aa3;
+$input-font-size: 14px;
+
+$footer-color:#e5e5e5;
+$footer-bottom-bg:rgba(255, 255, 255, .07);
+$footer-border: rgba(151, 151, 151, .07);
+$owl-overlay-bg: rgba(60,55,241,.8);

@@ -1,0 +1,195 @@
+<form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(form)" class="needs-validation"
+  novalidate>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">{{dados.id ? 'Editar':'Novo'}} Campo</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+
+    <ul ngbNav #nav="ngbNav" (activeId)="dados" class="nav-tabs">
+      <li ngbNavItem="dados">
+        <a ngbNavLink>Dados</a>
+        <ng-template ngbNavContent>
+          <div class="row g-3 mb-3">
+            <div class="col-sm-12">
+              <b>Título:</b>
+              <input type="text" required class="form-control" name="title" [(ngModel)]="dados.title"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'title')}">
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <b>Pergunta:</b>
+              <textarea rows="2" required class="form-control" name="question" [(ngModel)]="dados.question"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'question')}"></textarea>
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <b>Descrição:</b>
+              <textarea rows="2" class="form-control" name="description" [(ngModel)]="dados.description"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'description')}"></textarea>
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <b>Esconder resposta no contrato?</b>
+              <div class="form-check col">
+                <input class="form-check-input" type="checkbox" value="1" id="hideAnswer" name="hide_answer" [(ngModel)]="dados.hide_answer"
+                  [ngClass]="{'is-invalid': tools.getValidateInput(form, 'hide_answer')}" />
+                <label class="form-check-label" for="hideAnswer">
+                  Sim
+                </label>
+              </div>
+            </div>
+
+            <div class="col-sm-4 form-group">
+              <b>Tipo:</b>
+              <select required class="form-select" name="type" [(ngModel)]="dados.type"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'type')}">
+                <option value="text">Texto curto</option>
+                <option value="number">Numérico</option>
+                <option value="radio">múltipla escolha</option>
+                <option value="checkbox">Caixa de seleção</option>
+                <option value="select">Lista de seleção</option>
+                <!-- <option value="file">Anexo</option> -->
+                <option value="date">Calendário</option>
+              </select>
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-4 form-group">
+              <b>Máscara:</b>
+              <select class="form-select" name="mask" [(ngModel)]="dados.mask"
+                [disabled]="dados.type != 'text' ? true : false"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'mask')}">
+                <option value="">--Sem máscara--</option>
+                <option value="cpf">CPF</option>
+                <option value="cnpj">CNPJ</option>
+                <option value="phone">Telefone/Celular</option>
+                <option value="money">Real R$</option>
+                <option value="cep">CEP</option>
+              </select>
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-4 form-group">
+              <b>Obrigatório:</b>
+              <select class="form-select" required name="required" [(ngModel)]="dados.required"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'required')}">
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+              </select>
+
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-4 form-group">
+              <b>Condição:</b>
+              <select class="form-select" name="condition_type" [(ngModel)]="dados.condition_type"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'condition_type')}">
+                <option value="">--Sem condição--</option>
+                <option value="1">Mostrar se</option>
+                <option value="2">Esconder se</option>
+              </select>
+
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-4 form-group" *ngIf="dados.condition_type == 1 || dados.condition_type == 2">
+              <b>Campo:</b>
+              <select class="form-select" name="field_id" [(ngModel)]="dados.field_id"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'field_id')}">
+                <!-- <option value="">--Campo de Referencia--</option> -->
+                <ng-container *ngFor="let item of fields">
+                  <option [value]="item.id">{{item.title}}</option>
+                </ng-container>
+              </select>
+
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+            <div class="col-sm-4 form-group"
+              *ngIf="setFieldSelected() && (dados.condition_type == 1 || dados.condition_type == 2)">
+              <b>Valor for:</b>
+              <select class="form-select" required name="field_value" [(ngModel)]="dados.field_value"
+                *ngIf="['radio', 'select', 'checkbox'].includes(setFieldSelected().type)"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'field_value')}">
+                <ng-container *ngFor="let item of setFieldSelected().options">
+                  <option [value]="item.id">{{item.label}}</option>
+                </ng-container>
+              </select>
+
+              <select class="form-select" required name="field_value" [(ngModel)]="dados.field_value"
+                *ngIf="['text', 'date'].includes(setFieldSelected().type)"
+                [ngClass]="{'is-invalid': tools.getValidateInput(form, 'field_value')}">
+                <ng-container>
+                  <option value="true">Preenchido</option>
+                  <option value="false">Não Preenchido</option>
+                </ng-container>
+              </select>
+
+              <div class="invalid-feedback">
+                Preencha o campo.
+              </div>
+            </div>
+
+          </div>
+        </ng-template>
+      </li>
+
+      <li ngbNavItem="options" *ngIf="['radio', 'select', 'checkbox'].includes(dados.type)">
+        <a ngbNavLink>Opções</a>
+        <ng-template ngbNavContent>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <th>Descrição</th>
+                <th class="text-end">
+                  <button class="btn btn-sm btn-sc" type="button" (click)="openAdd()">
+                    <i class="bi bi-plus-circle"></i> Opção
+                  </button>
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dados.options;let i = index">
+                  <td>{{item.label}}</td>
+                  <td class="text-end">
+                    <button type="button" class="btn btn-sm btn-danger" (click)="removeOption(i)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+  </div>
+  <div class="modal-footer p-2">
+    <button type="submit" class="btn btn-sc" [disabled]="loading">
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="loading"></span>
+      <span>Salvar</span>
+    </button>
+  </div>
+</form>

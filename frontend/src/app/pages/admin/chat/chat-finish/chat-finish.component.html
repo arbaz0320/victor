@@ -1,0 +1,27 @@
+<form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(form)" class="needs-validation"
+  novalidate>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">Finalizar mensagem: #{{data.id}}</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-6">
+        <b>Pergunta:</b>
+        <app-editor atributo="pergunta" [form]="form" [dados]="dados" [requerido]="true"></app-editor>
+      </div>
+      <div class="col-sm-6">
+        <b>Resposta:</b>
+        <app-editor atributo="resposta" [form]="form" [dados]="dados" [requerido]="true"></app-editor>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer p-2">
+    <button type="submit" class="btn btn-sc" [disabled]="loading">
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="loading"></span>
+      <span>Finalizar</span>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,58 @@
+<main>
+  <div class="container">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+            <div class="card mb-3">
+
+              <div class="card-body">
+
+                <div class="d-flex justify-content-center py-3">
+                  <a href="index.html" class="d-flex align-items-center w-auto">
+                    <img src="assets/logo-landscape.png" alt="SC Advogados" height="60px">
+                    <!-- <span class="d-none d-lg-block">NiceAdmin</span> -->
+                  </a>
+                </div><!-- End Logo -->
+
+                <form class="row g-3 needs-validation" novalidate #form="ngForm" (ngSubmit)="submit(form)">
+
+                  <div class="col-12">
+                    <b for="email" class="form-label">E-mail:</b>
+                    <input type="email" email name="email" class="form-control" ngModel required
+                      [ngClass]="{'is-invalid': tools.getValidateInput(form, 'email')}">
+                    <div class="invalid-feedback">Por favor preencha o email.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <b for="yourPassword" class="form-label">Senha:</b>
+                    <input type="password" name="password" class="form-control" ngModel required
+                      [ngClass]="{'is-invalid': tools.getValidateInput(form, 'password')}">
+                    <div class="invalid-feedback">Por favor preencha a senha!</div>
+                  </div>
+
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-sc w-100" [disabled]="loading">
+                      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"
+                        *ngIf="loading"></span>
+                      <span>Entrar</span>
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <p class="small mb-0">Esqueceu sua senha? <a href="javascript:void()" routerLink="reset-password">Clique aqui</a></p>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main><!-- End #main -->

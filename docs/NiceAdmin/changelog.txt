@@ -1,0 +1,28 @@
+Version: 2.2.2
+  - Cards drop-down menu overflow fix
+
+Version: 2.2.1
+  - Typo fix in the login template: passwword -> password
+  - Updated all outdated third party vendor libraries to their latest versions
+
+Version: 2.2.0
+  - Updated Bootstrap to version 5.1.3
+  - Updated all outdated third party vendor libraries to their latest versions
+
+Version: 2.1.0
+  - Updated Bootstrap to version 5.1.2
+
+Version: 2.0.0
+  - The template was rebuilt from scratch with the latest Bootstrap version (5.1.1)
+  - Added NodeJS NPM Development version (Pro unlimited & Membership members)
+  - Update to latest version PHP Email Form
+
+Version: 1.2.0
+  - Updated all outdated third party vendor libraries to their latest versions
+  - Other small fixes and updates
+
+Version: 1.1.0
+  - Cleanup old libraries and small fixes
+
+Version: 1.0.0
+  - Initial Release

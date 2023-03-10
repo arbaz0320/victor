@@ -1,0 +1,9 @@
+adionar:
+Pergunta
+Descrição(info)
+
+vincular bloco -> campos preenchidos | *Esconder se* ou *mostrar se*
+
+em campos por a condição: *Esconder se*
+
+Verificar posição do bloco para adicionar números da clausula.

@@ -1,0 +1,39 @@
+.box-messages {
+  height: 250px;
+  overflow-y: auto;
+}
+
+.chat-chip {
+  display: flex;
+}
+
+.chat-box {
+  max-width: 80%;
+  margin: 6px 0px;
+  padding: 6px 15px;
+  border: 1px solid #214870ad;
+  border-radius: 6px;
+  color: white;
+  background-color: #455e77;
+
+  .text-light {
+    color: #cccc !important;
+  }
+
+  small {
+    font-size: 11px;
+  }
+}
+
+.chat-right {
+  justify-content: right;
+
+  .chat-box {
+    background-color: #214870;
+  }
+}
+
+.list-group-item.active {
+  background-color: #455e77;
+  border-color: #455e77;
+}

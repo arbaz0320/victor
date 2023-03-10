@@ -1,0 +1,77 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Título</th>
+      <th scope="col">Descrição</th>
+      <th scope="col" class="text-end">
+        <button type="button" class="btn btn-sm btn-sc" (click)="openBloco(modalTestimonial)">Nova área</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dataSource.data">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.title }}</td>
+      <td>{{item.description | slice:0:40}}</td>
+      <td class="text-end">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-secondary me-1" (click)="openBloco(modalTestimonial, item)">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-danger" (click)="deleteQuestion(item)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="dataSource.data.length > 0" class="mr-2">
+  <ngb-pagination [collectionSize]="dataSource.total" [pageSize]="filters.per_page" [rotate]="true" [maxSize]="6"
+    [(page)]="filters.page" (pageChange)="getList()" [boundaryLinks]="true" class="d-flex justify-content-end">
+  </ngb-pagination>
+</div>
+
+<div align="center" *ngIf="dataSource.total == 0">Nenhum registro encontrado</div>
+
+
+<ng-template #modalTestimonial let-modal>
+  <form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(modal, form)">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{dados.id ? 'Alterar' : 'Nova'}} Área</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close(); dados = {};"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-sm-12 mb-2">
+          <b>Título:</b>
+          <input type="text" required class="form-control" maxlength="255" [(ngModel)]="dados.title" name="title"
+            [ngClass]="{'is-invalid': tools.getValidateInput(form, 'title')}">
+          <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.title, 255)}}</small>
+        </div>
+
+        <div class="col-sm-12 mb-2">
+          <b>Imagem:</b>
+          <input type="file" [required]="dados.id ? false : true" class="form-control" id="inputFile" [(ngModel)]="dados.avatar" name="avatar"
+            (change)="changeAvatar($event.target);" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'avatar')}">
+        </div>
+
+        <div class="col-sm-12 mb-2">
+          <b>Descrição:</b>
+          <input type="text" required class="form-control" maxlength="255" [(ngModel)]="dados.description"
+            name="description" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'description')}">
+          <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.description, 255)}}</small>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-sc">Salvar</button>
+    </div>
+  </form>
+</ng-template>

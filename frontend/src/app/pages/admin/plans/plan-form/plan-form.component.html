@@ -1,0 +1,99 @@
+<form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(form)" class="needs-validation"
+  novalidate>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{dados.id ? 'Editar':'Novo'}} Plano</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row g-3">
+      <div class="col-sm-8">
+        <b>Nome:</b>
+        <input type="text" required class="form-control" name="name" [(ngModel)]="dados.name"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'name')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <b>Recomendado:</b>
+        <select required class="form-select" name="recommended" [(ngModel)]="dados.recommended"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'recommended')}">
+          <option value="1">Sim</option>
+          <option value="0">Não</option>
+        </select>
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <b>Valor por mês:</b>
+        <input type="tel" currencyMask required class="form-control" name="price_month" [(ngModel)]="dados.price_month"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'price_month')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <b>Valor por ano:</b>
+        <input type="tel" currencyMask required class="form-control" name="price_year" [(ngModel)]="dados.price_year"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'price_year')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <b>Desconto em Questões %:</b>
+        <input type="tel" currencyMask [options]="{prefix: ' ', suffix: ' %'}" required class="form-control"
+          name="percentage_discount_questions" [(ngModel)]="dados.percentage_discount_questions"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'percentage_discount_questions')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <b>Desconto em Contratos %:</b>
+        <input type="tel" currencyMask [options]="{prefix: ' ', suffix: ' %'}" required class="form-control"
+          name="percentage_discount_contracts" [(ngModel)]="dados.percentage_discount_contracts"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'percentage_discount_contracts')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <b>Status:</b>
+        <select required class="form-select" name="status" [(ngModel)]="dados.status"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'status')}">
+          <option value="1">Ativo</option>
+          <option value="0">Inativo</option>
+        </select>
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <b>Descrição:</b>
+        <textarea rows="2" required class="form-control" name="description" [(ngModel)]="dados.description"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'description')}"></textarea>
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer p-2">
+    <button type="submit" class="btn btn-sc" [disabled]="loading">
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="loading"></span>
+      <span>Salvar</span>
+    </button>
+  </div>
+</form>

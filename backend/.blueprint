@@ -1,0 +1,76 @@
+created:
+    - app/Http/Controllers/RoleController.php
+    - app/Http/Controllers/UserController.php
+    - app/Http/Controllers/ContractController.php
+    - app/Http/Controllers/ContractTypeController.php
+    - app/Http/Controllers/ContractBlockController.php
+    - app/Http/Controllers/FieldsBlockController.php
+    - app/Http/Controllers/ContractGeneratedController.php
+    - app/Http/Controllers/CouponController.php
+    - app/Http/Controllers/ContractCouponController.php
+    - app/Http/Controllers/MessageController.php
+    - database/factories/RoleFactory.php
+    - database/factories/UserFactory.php
+    - database/factories/ContractTypeFactory.php
+    - database/factories/ContractFactory.php
+    - database/factories/ContractBlockFactory.php
+    - database/factories/FieldsBlockFactory.php
+    - database/factories/ContractGeneratedFactory.php
+    - database/factories/CouponFactory.php
+    - database/factories/ContractCouponFactory.php
+    - database/factories/MessageFactory.php
+    - database/migrations/2022_04_19_003810_create_roles_table.php
+    - database/migrations/2022_04_19_003811_create_users_table.php
+    - database/migrations/2022_04_19_003812_create_contract_types_table.php
+    - database/migrations/2022_04_19_003813_create_contracts_table.php
+    - database/migrations/2022_04_19_003814_create_contract_blocks_table.php
+    - database/migrations/2022_04_19_003815_create_fields_blocks_table.php
+    - database/migrations/2022_04_19_003816_create_contract_generateds_table.php
+    - database/migrations/2022_04_19_003817_create_contract_generated_contents_table.php
+    - database/migrations/2022_04_19_003818_create_coupons_table.php
+    - database/migrations/2022_04_19_003819_create_contract_coupons_table.php
+    - database/migrations/2022_04_19_003820_create_messages_table.php
+    - app/Models/Role.php
+    - app/Models/User.php
+    - app/Models/ContractType.php
+    - app/Models/Contract.php
+    - app/Models/ContractBlock.php
+    - app/Models/FieldsBlock.php
+    - app/Models/ContractGenerated.php
+    - app/Models/Coupon.php
+    - app/Models/ContractCoupon.php
+    - app/Models/Message.php
+    - database/seeders/RoleSeeder.php
+    - database/seeders/UserSeeder.php
+    - database/seeders/ContractSeeder.php
+    - database/seeders/ContractTypeSeeder.php
+    - database/seeders/ContractBlockSeeder.php
+    - database/seeders/FieldsBlockSeeder.php
+    - database/seeders/ContractGeneratedSeeder.php
+    - database/seeders/CouponSeeder.php
+    - database/seeders/ContractCouponSeeder.php
+    - database/seeders/MessageSeeder.php
+    - database/seeders/Seeder.php
+    - tests/Feature/Http/Controllers/RoleControllerTest.php
+    - tests/Feature/Http/Controllers/UserControllerTest.php
+    - tests/Feature/Http/Controllers/ContractControllerTest.php
+    - tests/Feature/Http/Controllers/ContractTypeControllerTest.php
+    - tests/Feature/Http/Controllers/ContractBlockControllerTest.php
+    - tests/Feature/Http/Controllers/FieldsBlockControllerTest.php
+    - tests/Feature/Http/Controllers/ContractGeneratedControllerTest.php
+    - tests/Feature/Http/Controllers/CouponControllerTest.php
+    - tests/Feature/Http/Controllers/ContractCouponControllerTest.php
+    - tests/Feature/Http/Controllers/MessageControllerTest.php
+updated:
+    - routes/api.php
+models:
+    Role: { description: string }
+    User: { name: string, email: 'string unique', password: string, role_id: 'foreign:role.id', active: boolean }
+    Contract: { title: string, type_id: 'foreign:contract_type.id' }
+    ContractType: { title: string }
+    ContractBlock: { contract_id: 'foreign:contract.id', title: string, position: integer }
+    FieldsBlock: { contract_block_id: 'foreign:contract_block.id', type: string, mask: 'string nullable', label: string, position: integer }
+    ContractGenerated: { user_id: 'foreign:user.id', signed: boolean }
+    Coupon: { title: string, value: float, discount_type: "integer comment:\"0 - Porcentagem\n1 - Valor\"", expire_at: dateTime }
+    ContractCoupon: { coupon_id: 'foreign:coupon.id', contract_id: 'foreign:contract.id' }
+    Message: { user_id: 'foreign:user.id', message: text, read: boolean }

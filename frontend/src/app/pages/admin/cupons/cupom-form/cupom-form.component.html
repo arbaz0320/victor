@@ -1,0 +1,59 @@
+<form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(form)" class="needs-validation"
+  novalidate>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{dados.id ? 'Editar':'Novo'}} Cupom</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <b>Título:</b>
+        <input type="text" required class="form-control" name="title" [(ngModel)]="dados.title"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'title')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <b>Tipo:</b>
+        <select required class="form-select" name="discount_type" [(ngModel)]="dados.discount_type"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'discount_type')}">
+          <option value="1">Moeda</option>
+          <option value="2">Percentual</option>
+        </select>
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <b>Valor:</b>
+        <input type="tel" currencyMask [options]="dados.discount_type == 1 ? {} : maskPercent" required
+          class="form-control" name="value" [(ngModel)]="dados.value"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'value')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <b>Validade:</b>
+        <input type="date" required class="form-control" name="expire_at" [(ngModel)]="dados.expire_at"
+          [min]="getMinDate()" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'expire_at')}">
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer p-2">
+    <button type="submit" class="btn btn-sc" [disabled]="loading">
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="loading"></span>
+      <span>Salvar</span>
+    </button>
+  </div>
+</form>

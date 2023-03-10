@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="card mb-0">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title py-0">Condicionais</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+
+    <div class="card-body">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Label</th>
+            <th scope="col">
+              <button type="button" class="btn btn-sm btn-sc" (click)="openForm()">Nova</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataSource.data" (dblclick)="closeModal(item)">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.label }}</td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-secondary" (click)="openForm(item)">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="dataSource.data.length > 0" class="mr-2">
+        <ngb-pagination [collectionSize]="dataSource.total" [pageSize]="filters.per_page" [rotate]="true" [maxSize]="6"
+          [(page)]="filters.page" (pageChange)="getList()" [boundaryLinks]="true" class="d-flex justify-content-end">
+        </ngb-pagination>
+      </div>
+
+      <div align="center" *ngIf="dataSource.total == 0">Nenhum registro encontrado</div>
+
+    </div>
+
+  </div>
+</section>

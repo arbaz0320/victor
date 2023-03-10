@@ -1,0 +1,50 @@
+<section class="section">
+  <div class="card mb-0">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title py-0">Tipos de contrato</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+
+    <div class="card-body">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tipo</th>
+            <th scope="col" class="text-end">
+              <button type="button" class="btn btn-sm btn-sc" (click)="openForm()">Novo Tipo</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataSource.data" (dblclick)="closeModal(item)">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.title}}</td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-secondary me-2" (click)="openForm(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteQuestion(item)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="dataSource.data.length > 0" class="mr-2">
+        <ngb-pagination [collectionSize]="dataSource.total" [pageSize]="filters.per_page" [rotate]="true" [maxSize]="6"
+          [(page)]="filters.page" (pageChange)="getList()" [boundaryLinks]="true" class="d-flex justify-content-end">
+        </ngb-pagination>
+      </div>
+
+      <div align="center" *ngIf="dataSource.total == 0">Nenhum registro encontrado</div>
+
+    </div>
+
+  </div>
+</section>

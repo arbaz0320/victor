@@ -1,0 +1,50 @@
+.pricing-box {
+	border-radius: 4px;
+	border: solid 1px $border-color;
+	background-color: $white;
+	padding: 47px;
+	text-align: center;
+	margin-top: 40px;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-ms-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+	.title-text {
+		color: theme-color(dark);
+	}
+	.text-amount {
+		color: theme-color(primary);
+	}
+	img {
+		margin-bottom: 37px;
+	}
+	.pricing-list {
+		list-style: none;
+		padding-left: 0;
+		margin-bottom: 40px;
+		li {
+			padding: 8px;
+		}
+	}
+	&.selected {
+		box-shadow: 0 9px 15px 0 rgba(7, 42, 68, 0.09);
+	}
+	&:hover {
+		background: theme-color(secondary);
+		.title-text {
+			color: $white;
+		}
+		.text-amount {
+			color: $white;
+		}
+		.pricing-list {
+			li {
+				color: $white;
+			}
+		}
+		.btn {
+      color: $white;
+    }
+	}
+}

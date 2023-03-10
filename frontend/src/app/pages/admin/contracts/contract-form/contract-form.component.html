@@ -1,0 +1,172 @@
+<form
+  #form="ngForm"
+  (keydown.enter)="$event.preventDefault()"
+  (ngSubmit)="submit(form)"
+  class="section needs-validation"
+  novalidate
+>
+  <div class="card recent-sales overflow-auto">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title py-0">
+        <a [routerLink]="['/contracts']"
+          ><i class="bi bi-arrow-left-circle me-2"></i
+        ></a>
+        {{ dados.id ? "Editar" : "Novo" }} Contrato
+      </h5>
+    </div>
+
+    <div class="card-body py-2">
+      <div class="row g-3">
+        <div class="col-sm-5">
+          <b>Título:</b>
+          <input
+            type="text"
+            required
+            class="form-control"
+            name="title"
+            [(ngModel)]="dados.title"
+            [ngClass]="{ 'is-invalid': tools.getValidateInput(form, 'title') }"
+          />
+          <div class="invalid-feedback">Preencha o TÍTULO.</div>
+        </div>
+
+        <div class="col-sm-3">
+          <b>Tipo:</b>
+          <div class="input-group">
+            <select
+              required
+              class="form-select"
+              name="type_id"
+              [(ngModel)]="dados.type_id"
+              [ngClass]="{
+                'is-invalid': tools.getValidateInput(form, 'type_id')
+              }"
+            >
+              <option *ngFor="let item of typesContract" [value]="item.id">
+                {{ item.title }}
+              </option>
+            </select>
+            <button
+              type="button"
+              class="input-group-text"
+              (click)="openAddTypeContract()"
+            >
+              <i class="bi bi-plus"></i>
+            </button>
+            <div class="invalid-feedback">Preencha o TIPO.</div>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <b>Valor:</b>
+          <input
+            type="tel"
+            required
+            currencyMask
+            class="form-control"
+            name="price"
+            [(ngModel)]="dados.price"
+            [ngClass]="{ 'is-invalid': tools.getValidateInput(form, 'price') }"
+          />
+        </div>
+
+        <div class="col-sm-2">
+          <b>Status:</b>
+          <select
+            required
+            class="form-select"
+            name="status"
+            [(ngModel)]="dados.status"
+            [ngClass]="{ 'is-invalid': tools.getValidateInput(form, 'status') }"
+          >
+            <option value="1">Ativo</option>
+            <option value="0">Inativo</option>
+          </select>
+        </div>
+
+        <div class="col-sm-12">
+          <b>URL Apresentação:</b>
+          <input
+            type="text"
+            class="form-control"
+            name="presentation_path"
+            [(ngModel)]="dados.presentation_path"
+          />
+        </div>
+
+        <div class="col-sm-12">
+          <b>Descrição:</b>
+          <input
+            type="text"
+            required
+            class="form-control"
+            name="description"
+            [(ngModel)]="dados.description"
+            [ngClass]="{
+              'is-invalid': tools.getValidateInput(form, 'description')
+            }"
+          />
+          <div class="invalid-feedback">Preencha a DESCRIÇÃO.</div>
+        </div>
+
+        <!-- <div class="col-sm-2">
+          <b>Assinaturas:</b>
+          <input type="number" required class="form-control" name="signatures_number"
+            [(ngModel)]="dados.signatures_number"
+            [ngClass]="{'is-invalid': tools.getValidateInput(form, 'signatures_number')}">
+          <div class="invalid-feedback">
+            Preencha a quantidade de assinaturas.
+          </div>
+        </div> -->
+
+        <div class="col-sm-8">
+          <div class="card border">
+            <div class="card-header py-2 d-flex justify-content-between">
+              <h4 class="text-dark">Texto do contrato</h4>
+              <button
+                type="button"
+                class="btn d-flex justify-content-center align-items-center btn-sc"
+                (click)="addBloco()"
+              >
+                <i class="bi bi-plus-circle me-1"></i> Adicionar bloco
+              </button>
+            </div>
+            <div class="card-body p-0">
+              <app-editor
+                #editor
+                atributo="text"
+                [form]="form"
+                [dados]="dados"
+                [requerido]="true"
+              ></app-editor>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="border-bottom mb-5">
+            <app-fields
+              (changeField)="setField($event)"
+              [block_or_fields]="dados.block_or_fields"
+            ></app-fields>
+          </div>
+          <div *ngIf="dados.id">
+            <app-signatories [contract_id]="dados.id"></app-signatories>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer" align="center">
+      <button type="submit" class="btn btn-sc" [disabled]="loading">
+        <span
+          class="spinner-border spinner-border-sm me-2"
+          role="status"
+          aria-hidden="true"
+          *ngIf="loading"
+        ></span>
+        <span>Salvar</span>
+      </button>
+    </div>
+  </div>
+</form>

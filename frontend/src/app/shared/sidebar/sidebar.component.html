@@ -1,0 +1,13 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <ng-container *ngFor="let item of menu">
+      <app-menu-item *ngIf="!item.items" [data]="item"></app-menu-item>
+    </ng-container>
+
+
+  </ul>
+
+</aside><!-- End Sidebar-->

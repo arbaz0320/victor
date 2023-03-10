@@ -1,0 +1,96 @@
+<section class="section">
+  <div class="card h-100">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title py-0">Mensagens</h5>
+
+      <!-- <div>
+        <button type="button" class="btn btn-sm btn-sc me-1" [routerLink]="['novo']">Novo Contrato</button>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="openTypeContractsList()">Tipo de
+          Contratos</button>
+      </div> -->
+    </div>
+
+    <div class="card-body m-0" style="padding: 0px 14px;">
+
+      <div class="row">
+
+        <div class="col-sm-4 border-end">
+
+          <div class="input-group input-group-sm py-3">
+            <input type="text" class="form-control" placeholder="Pesquisa campo" aria-label="Pesquisa"
+              aria-describedby="search_input" [(ngModel)]="filters.termo" name="termo" (keyup.enter)="getMessages()">
+            <div class="input-group-append">
+              <button class="btn btn-sc" type="button" id="search_input" (click)="getMessages()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="list-group m-3">
+            <a href="javascript:void(0)" *ngFor="let item of messages"
+              [ngClass]="{'active': item.id == message.id, 'disabled': loading}" [routerLink]="['/chat']"
+              [queryParams]="{chat_id:item.id}" class="list-group-item list-group-item-action">
+              <div class="d-flex align-items-center">
+                <span class="circle-initials bg-sc me-3">
+                  {{tools.getInitials(item.user.name)}}
+                </span>
+                <span><strong>#{{item.id}} - {{item.user.name}}</strong></span>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+        <div class="col-sm-8">
+          <div class="mt-3 box-messages" id="box-messages" *ngIf="message.id">
+
+            <div class="chat-chip" [ngClass]="{'chat-right': message.user_id == user.id}">
+              <div class="chat-box">
+                <span [innerHTML]="message.message"></span>
+                <div>
+                  <small class="text-light">{{tools.getTime(message.created_at)}}</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-chip" [ngClass]="{'chat-right': item.user_id == user.id}"
+              *ngFor="let item of message.messages">
+              <div class="chat-box">
+                <span [innerHTML]="item.message"></span>
+                <div>
+                  <small class="text-light">{{tools.getTime(item.created_at)}}</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-chip" *ngIf="message.status == 10 && message.pergunta">
+              <div class="chat-box">
+                <span [innerHTML]="message.pergunta"></span>
+                <div>
+                  <small class="text-light">{{tools.getTime(message.updated_at)}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="chat-chip chat-right" *ngIf="message.status == 10 && message.resposta">
+              <div class="chat-box">
+                <span [innerHTML]="message.resposta"></span>
+                <div>
+                  <small class="text-light">{{tools.getTime(message.updated_at)}}</small>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <app-chat-form *ngIf="message.id" [message]="message" (sendMessage)="responseMessage($event)"
+            [status]="message.status" [loading]="loading">
+          </app-chat-form>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

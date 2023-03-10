@@ -1,0 +1,137 @@
+<form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(form)" class="needs-validation"
+  novalidate>
+  <div class="modal-header py-2">
+    <h5 class="modal-title" id="modal-basic-title">{{dados.id ? 'Editar':'Novo'}} Bloco</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row g-3">
+      <div class="col-sm-12">
+        <b>Título:</b>
+        <input type="text" required class="form-control" name="title" [(ngModel)]="dados.title"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'title')}">
+        <div class="invalid-feedback">
+          Preencha a campo.
+        </div>
+
+      </div>
+      <!-- <div class="col-sm-4">
+        <b>Tipo:</b>
+        <select required class="form-control" name="modo" [(ngModel)]="dados.modo"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'modo')}">
+          <option value="normal">Normal</option>
+          <option value="sign">Assinatura</option>
+        </select>
+        <div class="invalid-feedback">
+          Preencha a campo.
+        </div>
+      </div> -->
+    </div>
+
+    <div class="mb-2">
+      <b>Pergunta:</b>
+      <textarea rows="2" [required]="dados.conditionals.length > 1 ? true : false" class="form-control" name="question"
+        [(ngModel)]="dados.question" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'question')}"></textarea>
+      <div class="invalid-feedback">
+        Preencha a campo.
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <b>Descrição:</b>
+      <textarea rows="2" class="form-control" name="description" [(ngModel)]="dados.description"
+        [ngClass]="{'is-invalid': tools.getValidateInput(form, 'description')}"></textarea>
+      <div class="invalid-feedback">
+        Preencha a campo.
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-sm-4">
+        <b>Condição:</b>
+        <select class="form-select" name="condition_type" [(ngModel)]="dados.condition_type"
+          (change)="setFieldSelected($event)"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'condition_type')}">
+          <option value="">--Sem condição--</option>
+          <option value="1">Mostrar se</option>
+          <option value="2">Esconder se</option>
+        </select>
+
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-4" *ngIf="dados.condition_type == 1 || dados.condition_type == 2">
+        <b>Campo:</b>
+        <select class="form-select" name="field_id" [(ngModel)]="dados.field_id" (change)="setFieldSelected($event)"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'field_id')}">
+          <!-- <option value="">--Campo de Referencia--</option> -->
+          <ng-container *ngFor="let item of fields">
+            <option [value]="item.id">{{item.title}}</option>
+          </ng-container>
+        </select>
+
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+
+      <div class="col-sm-4" *ngIf="fieldSelected && (dados.condition_type == 1 || dados.condition_type == 2)">
+        <b>Valor for:</b>
+        <select class="form-select" required name="field_value" [(ngModel)]="dados.field_value"
+          *ngIf="['radio', 'select', 'checkbox'].includes(fieldSelected.type)"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'field_value')}">
+          <ng-container *ngFor="let item of fieldSelected.options">
+            <option [value]="item.id">{{item.label}}</option>
+          </ng-container>
+        </select>
+
+        <select class="form-select" required name="field_value" [(ngModel)]="dados.field_value"
+          *ngIf="['text', 'date'].includes(fieldSelected.type)"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'field_value')}">
+          <ng-container>
+            <option value="1">Preenchido</option>
+            <option value="0">Não Preenchido</option>
+          </ng-container>
+        </select>
+
+        <div class="invalid-feedback">
+          Preencha o campo.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 mt-3">
+      <div class="card border p-3 mb-2 bg-sc text-white" *ngFor="let item of dados.conditionals; let i = index">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <span>{{item.label}}</span>
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="openConditional(item, i)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" (click)="deleteQuestion(item, i)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="d-grid gap-2">
+      <button type="button" class="btn btn-large btn-sc" (click)="openConditional()">
+        <i class="bi bi-plus-circle me-1"></i> Adicionar Condicional.
+      </button>
+    </div>
+
+  </div>
+  <div class="modal-footer p-2">
+    <button type="submit" class="btn btn-sc" [disabled]="loading">
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="loading"></span>
+      <span>Salvar</span>
+    </button>
+  </div>
+</form>

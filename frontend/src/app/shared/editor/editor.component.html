@@ -1,0 +1,4 @@
+<ckeditor #scEditor [editor]="editor" [(ngModel)]="dados[atributo]" [name]="atributo" *ngIf="form"
+  [ngClass]="{'is-invalid': tools.getValidateInput(form, atributo) && requerido}"></ckeditor>
+
+<ckeditor [editor]="editor" [(ngModel)]="dados[atributo]" [name]="atributo" *ngIf="!form"></ckeditor>

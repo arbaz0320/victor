@@ -1,0 +1,202 @@
+<form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="update(form)">
+  <section class="section">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title py-0">Configurações</h5>
+      </div>
+
+      <div class="card-body py-2">
+
+        <nav ngbNav #nav="ngbNav" class="nav-tabs" [destroyOnHide]="false">
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Informações do site</a>
+            <ng-template ngbNavContent>
+              <ng-container *ngTemplateOutlet="infoSite"></ng-container>
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Social e Contatos</a>
+            <ng-template ngbNavContent>
+              <ng-container *ngTemplateOutlet="socialContacts"></ng-container>
+
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Áreas do Direito</a>
+            <ng-template ngbNavContent>
+              <app-right-areas></app-right-areas>
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Depoimentos</a>
+            <ng-template ngbNavContent>
+              <app-testimonials></app-testimonials>
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Termos</a>
+            <ng-template ngbNavContent>
+              <ng-container *ngTemplateOutlet="terms"></ng-container>
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem>
+            <a ngbNavLink>Outros</a>
+            <ng-template ngbNavContent>
+              <div class="px-2">
+                <div class="row">
+                  <div class="col-sm-2 mb-4">
+                    <b>Valor consulta:</b>
+                    <input type="tel" currencyMask class="form-control" name="price_question"
+                      [(ngModel)]="dados.price_question" />
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </nav>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+      </div>
+
+      <div class="card-footer" align="center">
+        <button type="submit" class="btn btn-sc" [disabled]="loading">
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="loading"></span>
+          <span>Salvar</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <ng-template #infoSite>
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <b>Título Banner:</b>
+        <input type="text" required class="form-control" maxlength="255" name="banner_title" [(ngModel)]="dados.banner_title"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'banner_title')}" />
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.banner_title, 255)}}</small>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>Texto Banner:</b>
+        <textarea required class="form-control" maxlength="255" name="banner_text" [(ngModel)]="dados.banner_text"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'banner_text')}"></textarea>
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.banner_text, 255)}}</small>
+      </div>
+
+      <div class="col-sm-6 mb-4">
+        <b>Título Seção 1:</b>
+        <input type="text" required class="form-control" maxlength="255" name="section1_title"
+          [(ngModel)]="dados.section1_title" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'section1_title')}" />
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.section1_title, 255)}}</small>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>Texto Seção 1:</b>
+        <textarea required class="form-control" maxlength="1000" name="section1_text" [(ngModel)]="dados.section1_text"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'section1_text')}"></textarea>
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.section1_text, 1000)}}</small>
+      </div>
+
+      <div class="col-sm-3 mb-4">
+        <b>Clientes satisfeitos:</b>
+        <input type="number" required class="form-control" maxlength="255" name="counters_1"
+          [(ngModel)]="dados.counters_1" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'counters_1')}" />
+      </div>
+      <div class="col-sm-3 mb-4">
+        <b>Contratos criados:</b>
+        <input type="number" required class="form-control" maxlength="255" name="counters_2"
+          [(ngModel)]="dados.counters_2" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'counters_2')}" />
+      </div>
+      <div class="col-sm-3 mb-4">
+        <b>Consultas feitas:</b>
+        <input type="number" required class="form-control" maxlength="255" name="counters_3"
+          [(ngModel)]="dados.counters_3" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'counters_3')}" />
+      </div>
+      <div class="col-sm-3 mb-4">
+        <b>Anos de experiência:</b>
+        <input type="number" required class="form-control" maxlength="255" name="counters_4"
+          [(ngModel)]="dados.counters_4" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'counters_4')}" />
+      </div>
+
+      <div class="col-sm-6 mb-4">
+        <b>Título Seção 2:</b>
+        <input type="text" required class="form-control" maxlength="255" name="section2_title"
+          [(ngModel)]="dados.section2_title" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'section2_title')}" />
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.section2_title, 255)}}</small>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>Texto Seção 2:</b>
+        <textarea required class="form-control" maxlength="1000" name="section2_text" [(ngModel)]="dados.section2_text"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'section2_text')}"></textarea>
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.section2_text, 1000)}}</small>
+      </div>
+
+      <div class="col-sm-6 mb-4">
+        <b>Título Seção 3:</b>
+        <input type="text" required class="form-control" maxlength="255" name="section3_title"
+          [(ngModel)]="dados.section3_title" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'section3_title')}" />
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.section3_title, 255)}}</small>
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>Texto Seção 3:</b>
+        <textarea required class="form-control" maxlength="1000" name="section3_text" [(ngModel)]="dados.section3_text"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'section3_text')}"></textarea>
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.section3_text, 1000)}}</small>
+      </div>
+
+      <div class="col-sm-12 mb-4">
+        <b>Endereço:</b>
+        <input type="text" required class="form-control" maxlength="255" name="address" [(ngModel)]="dados.address"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'address')}" />
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.address, 255)}}</small>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #socialContacts>
+    <div class="row">
+      <div class="col-sm-6 mb-4">
+        <b>Facebook:</b>
+        <input type="url" required class="form-control" name="link_facebook" [(ngModel)]="dados.link_facebook"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'link_facebook')}" />
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>Instagram:</b>
+        <input type="url" required class="form-control" name="link_instagram" [(ngModel)]="dados.link_instagram"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'link_instagram')}" />
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>LinkedIn:</b>
+        <input type="url" required class="form-control" name="link_linkedin" [(ngModel)]="dados.link_linkedin"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'link_linkedin')}" />
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>E-mail:</b>
+        <input type="email" required class="form-control" name="email" [(ngModel)]="dados.email"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'email')}" />
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>Telefone 1:</b>
+        <input type="text" class="form-control" [dropSpecialCharacters]="false" mask="(00) 0000-0000||(00) 0 0000-0000"
+          name="phone1" [(ngModel)]="dados.phone1" />
+      </div>
+      <div class="col-sm-6 mb-4">
+        <b>Telefone 2:</b>
+        <input type="text" class="form-control" [dropSpecialCharacters]="false" mask="(00) 0000-0000||(00) 0 0000-0000"
+          name="phone2" [(ngModel)]="dados.phone2" />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #terms>
+    <div class="row">
+      <div class="col-sm-12 mb-4">
+        <b>Termos:</b>
+        <app-editor [requerido]="true" atributo="term_text" [form]="form" [dados]="dados"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'term_text')}"></app-editor>
+        <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.term_text, 255)}}</small>
+      </div>
+    </div>
+  </ng-template>
+</form>

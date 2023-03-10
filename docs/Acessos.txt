@@ -1,0 +1,55 @@
+Oracle:
+vcalijuri
+calijuriadv@gmail.com 
+Devio123!
+
+
+
+AAPanel:
+Congratulations! Installed successfully!
+==================================================================
+aaPanel Internet Address: https://144.22.183.127:7800/f11177ec
+aaPanel Internal Address: https://10.0.0.246:7800/f11177ec
+username: ajuv2okj
+password: 31593883
+Warning:
+If you cannot access the panel, 
+release the following port (7800|888|80|443|20|21) in the security group
+
+
+Acesso com segurança do AAPanel:
+https://server.advogadossc.com:7800/calijuri
+username: calijuri
+pass: Devio123!
+
+Sites:
+Landing Page: https://advogadossc.com/
+Administrativo: https://painel.advogadossc.com/
+
+
+//Mercado Pago
+Teste
+Public Key
+TEST-6be56ac9-f6b3-47b5-b0cd-11165096f4c6
+
+Access Token
+TEST-2018618152690263-080111-8fef5774d34a1ff883e072a0eeeecdec-1170923784
+
+Produção
+Public Key
+APP_USR-996d3013-26f8-49ec-b5a3-27cd42ea735a
+
+Access Token
+APP_USR-2018618152690263-080111-b413850a177c884dac4b50622809ff77-1170923784
+
+Client ID 
+2018618152690263
+
+Client Secret
+BtcVrw1AGvXgQ2Zdmyk44hvZZpkYF8mt
+
+Pusher
+PUSHER_APP_ID=1467081
+PUSHER_APP_KEY=0e3fc37b93f50ec46388
+PUSHER_APP_SECRET=70bafa6d0bae8d8ce9fb
+PUSHER_APP_CLUSTER=sa1

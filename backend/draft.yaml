@@ -1,0 +1,72 @@
+models:
+    Role:
+        description: string
+    User:
+        name: string
+        email: string unique
+        password: string
+        role_id: foreign:role.id
+        active: boolean
+    ContractType:
+        title: string
+    Contract:
+      title: string
+      type_id: foreign:contract_type.id
+    ContractBlock:
+        contract_id: foreign:contract.id
+        title: string
+        position: integer
+    FieldsBlock:
+        contract_block_id: foreign:contract_block.id
+        type: string
+        mask: string nullable
+        label: string
+        position: integer
+    ContractGenerated:
+        user_id: foreign:user.id
+        signed: boolean
+    Coupon:
+        title: string
+        value: float
+        discount_type: "integer comment:\"0 - Porcentagem\n1 - Valor\""
+        expire_at: dateTime
+    ContractCoupon:
+        coupon_id: foreign:coupon.id
+        contract_id: foreign:contract.id
+    Message:
+        user_id: foreign:user.id
+        message: text
+        read: boolean
+controllers:
+    Role:
+      resource: api
+    User:
+      resource: api
+    Contract:
+      resource: api
+    ContractType:
+      resource: api
+    ContractBlock:
+      resource: api
+    FieldsBlock:
+      resource: api
+    ContractGenerated:
+      resource: api
+    Coupon:
+      resource: api
+    ContractCoupon:
+      resource: api
+    Message:
+      resource: api
+seeders:
+    Role,
+    User,
+    Contract,
+    ContractType,
+    ContractBlock,
+    FieldsBlock,
+    ContractGenerated,
+    Coupon,
+    ContractCoupon,
+    Message,
+

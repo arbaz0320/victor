@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-between align-items-center border-bottom mb-2">
+  <h5 class="mb-0">Campos</h5>
+  <button class="btn btn-sm btn-sc" type="button" (click)="openField()">
+    <i class="bi bi-plus-circle"></i> Novo Campo
+  </button>
+</div>
+
+<div class="list-campos">
+  <div class="input-group input-group-sm mb-3">
+    <input type="text" class="form-control" placeholder="Pesquisa campo" aria-label="Pesquisa"
+      aria-describedby="search_input" [(ngModel)]="filterFields.termo" name="termo" (keyup.enter)="getFields()">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button" id="search_input" (click)="getFields()">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="btn-group me-2 mb-2">
+    <button type="button" class="btn btn-sm btn-block btn-sc" (click)="setField({slug: 'index_'})">
+      <strong>Índice</strong>
+    </button>
+  </div>
+  <div class="btn-group me-2 mb-2">
+    <button type="button" class="btn btn-sm btn-block btn-sc" (click)="setField({slug: 'subindex_'})">
+      <strong>Subíndice</strong>
+    </button>
+  </div>
+  <hr />
+  <div *ngIf="someFields.length > 0">
+    <ng-container *ngFor="let item of someFields">
+      <div class="btn-group me-2 mb-2">
+        <button type="button" class="btn btn-sm btn-sc" (click)="openField(item)">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-block btn-sc" *ngIf="!item.show" (click)="setField(item)">
+          <strong>{{item.title}}</strong>
+        </button>
+        <button type="button" class="btn btn-sm btn-sc" (click)="deleteFieldQuestion(item)">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </ng-container>
+    <hr />
+  </div>
+  <ng-container *ngFor="let item of fields">
+    <div class="btn-group me-2 mb-2">
+      <button type="button" class="btn btn-sm btn-sc" (click)="openField(item)">
+        <i class="bi bi-pencil"></i>
+      </button>
+      <button type="button" class="btn btn-sm btn-block btn-sc" *ngIf="!item.show" (click)="setField(item)">
+        <strong>{{item.title}}</strong>
+      </button>
+      <button type="button" class="btn btn-sm btn-sc" (click)="deleteFieldQuestion(item)">
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+  </ng-container>
+</div>

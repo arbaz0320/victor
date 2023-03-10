@@ -1,0 +1,64 @@
+body,
+html {
+	overflow-x: hidden;
+}
+
+.home {
+	background: $header-bg;
+	background-repeat-y: no-repeat;
+	background-position: 0 -50px;
+	padding-top: 103px;
+	@media (max-width: 991px) {
+		padding-top: 71px;
+	}
+}
+
+.main-banner {
+	padding: 4.2rem 0 14rem 0;
+	color: $white;
+	background-size: cover;
+	@media (max-width: 991px) {
+		padding: 1rem;
+		margin-bottom: 50px;
+	}
+	.banner-title {
+		width: 56%;
+		@media (max-width: 991px) {
+			width: 100%;
+		}
+	}
+}
+
+section {
+	padding: 120px 0 0 0;
+	@media (max-width: 1024px) {
+		padding: 130px 0 0 0;
+	}
+	@media (max-width: 991px) {
+		padding: 70px 0 0 0;
+	}
+}
+
+.services-box {
+	padding: 10px 100px 40px 0;
+	@media (max-width: 991px) {
+		padding: 10px 10px 40px 0;
+	}
+	&:hover {
+		img {
+			-webkit-filter: grayscale(100%);
+			/* Safari 6.0 - 9.0 */
+			filter: grayscale(100%);
+			-webkit-transition: all 2s;
+			-moz-transition: all 2s;
+			-ms-transition: all 2s;
+			-o-transition: all 2s;
+			transition: all 2s;
+		}
+	}
+}
+
+.tick-icon {
+	width: 20px;
+	height: 20px;
+}

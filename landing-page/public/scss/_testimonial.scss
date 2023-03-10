@@ -1,0 +1,63 @@
+.testimonial {
+	// background: $testimonial-bg;
+	padding: 100px 0 70px 0;
+	background-size: cover;
+	@media (max-width: 991px) {
+		padding: 20px 0;
+	}
+	.testimonial-item {
+		width: 450px;
+		padding: 34px 34px 34px 94px;
+		background: $white;
+		color: theme-color(dark);
+		border-radius: 10px;
+		position: relative;
+		box-shadow: 0 20px 70px -10px rgba(109, 121, 141, .15);
+		@media (max-width: 1024px) {
+			width: 400px;
+		}
+		@media (max-width: 991px) {
+			width: 280px;
+		}
+		.testimonial-icons {
+			width: 50px;
+			height: 50px;
+			border-radius: 100%;
+			position: absolute;
+			top: 40px;
+			left: 28px;
+		}
+		.testimonial-author {
+			margin-top: 1rem;
+			margin-bottom: .5rem;
+			position: relative;
+			font-weight: 500;
+			&:before {
+				content: "\f756";
+				position: absolute;
+				left: -40px;
+				color: transparent;
+				font-size: 1.75rem;
+				background: url(../images/quote.png) no-repeat;
+			}
+		}
+		.testimonial-destination {
+			color: theme-color(light);
+			font-weight: normal;
+			font-size: 14px;
+		}
+	}
+	.flipster__button--prev {
+		left: auto;
+		right: 0;
+		top: 86%;
+		transform: rotate(270deg);
+	}
+	.flipster__button--next {
+		transform: rotate(270deg);
+		top: 78%;
+	}
+	.flipster__button svg {
+		width: .75em;
+	}
+}

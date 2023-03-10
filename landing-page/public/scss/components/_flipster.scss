@@ -1,0 +1,34 @@
+
+.flipster--coverflow {
+	.flipster__container {
+		padding-bottom: 0;
+	}
+	.flipster__item__content {
+		-webkit-transform-origin: 50% 100%;
+		-ms-transform-origin: 50% 100%;
+		transform-origin: 50% 100%;
+		box-reflect: below 0 -webkit-gradient(linear, left bottom, left top, color-stop(0.05, rgba(255, 255, 255, 0)), color-stop(0.2, transparent));
+		-webkit-box-reflect: below 0 -webkit-gradient(linear, left bottom, left top, color-stop(0.05, rgba(255, 255, 255, 0)), color-stop(0.2, transparent));
+	}
+}
+
+.flipster-custom-nav {
+	padding-left: 0;
+	list-style: none;
+	margin-top: 2rem;
+	.flipster-custom-nav-item {
+		display: inline-block;
+		.flipster-custom-nav-link {
+			display: block;
+			width: 10px;
+			height: 10px;
+			border-radius: 100%;
+			border: 1px solid $border-color;
+			// background: $border-color;
+			margin-right: 1rem;
+			&.active {
+				background: $border-color;
+			}
+		}
+	}
+}

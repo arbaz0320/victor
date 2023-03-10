@@ -1,0 +1,148 @@
+html,
+body {
+  height: 95%;
+}
+
+.sidebar-nav .nav-link {
+  color: #012970;
+  background: #fff;
+}
+
+.sidebar-nav .nav-link.active {
+  color: #4154f1;
+  background: #f6f9ff;
+}
+
+.sidebar {
+  width: 260px;
+}
+
+.btn-sc {
+  color: #fff;
+  background-color: #214970 !important;
+  border-color: #8fa4d1;
+}
+
+.btn-sc:hover {
+  color: #fff;
+  background-color: #2a66a3 !important;
+  border-color: #8fa4d1;
+}
+
+.not-icon-dow::after {
+  display: none;
+}
+
+.block-contract {
+  position: relative;
+  height: 50px;
+  border: 1px solid #bbc8e3;
+  border-radius: 0.5rem;
+  color: #214970;
+  cursor: pointer;
+
+  i {
+    position: absolute;
+    top: 0;
+    display: none;
+  }
+
+  i.left {
+    left: 0;
+  }
+
+  i.right {
+    right: 0;
+  }
+}
+
+.block-contract:hover {
+  i {
+    display: block;
+  }
+}
+
+.nav-link {
+  color: #214970;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .show>.nav-link {
+  color: #fff;
+  background-color: #214970;
+}
+
+// @media (min-width: 576px) {
+//   .modal-dialog {
+//     max-width: 580px;
+//   }
+// }
+
+.font-sm {
+  font-size: 0.8rem;
+}
+
+.box-preview {
+  min-height: 150px;
+  max-height: 400px;
+  border-radius: 6px;
+  overflow-y: auto;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  vertical-align: middle;
+}
+
+.bg-sc {
+  color: #fff;
+  background-color: #214970 !important;
+  border-color: #8fa4d1;
+}
+
+.dropDownNotArrow::after {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+
+  #main,
+  #footer {
+    margin-left: 260px;
+  }
+}
+
+.is-invalid .NgxEditor {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.logo-sc {
+  height: 40px;
+}
+
+.circle-initials {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-nav .nav-link i {
+  color: #001a4e;
+}
+
+.dropdown-menu {
+  overflow-y: auto;
+  max-height: 480px;
+}

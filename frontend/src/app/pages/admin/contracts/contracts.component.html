@@ -1,0 +1,89 @@
+<!-- <div class="pagetitle">
+  <h1>Contratos</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+  </nav>
+</div> -->
+<!-- End Page Title -->
+
+<section class="section">
+  <div class="card recent-sales overflow-auto">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title py-0">Contratos</h5>
+
+      <div>
+        <button type="button" class="btn btn-sm btn-sc me-1" [routerLink]="['novo']">Novo Contrato</button>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="openTypeContractsList()">Tipo de
+          Contratos</button>
+      </div>
+      <!-- <div class="filter" ngbDropdown>
+        <a class="icon not-icon-dow" href="javascript:void()" ngbDropdownToggle><i class="bi bi-three-dots"></i></a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" ngbDropdownMenu>
+          <li class="dropdown-header text-start">
+            <h6>Filter</h6>
+          </li>
+
+          <li><a class="dropdown-item" href="#">Today</a></li>
+          <li><a class="dropdown-item" href="#">This Month</a></li>
+          <li><a class="dropdown-item" href="#">This Year</a></li>
+        </ul>
+      </div> -->
+    </div>
+
+    <div class="card-body">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Título</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataSource.data">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.title }}</td>
+            <td>{{item.price | currency:'R$'}}</td>
+            <td>
+              <span *ngIf="item.type">{{item.type.title}}</span>
+              <i *ngIf="!item.type">Não informado</i>
+            </td>
+            <td>
+              <span class="badge" [ngClass]="{'bg-primary': item.status, 'bg-danger': !item.status}">
+                {{item.status ? 'Ativo' : 'Inativo'}}
+              </span>
+            </td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-secondary me-2" [routerLink]="[item.id]">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteQuestion(item)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="dataSource.data.length > 0" class="mr-2">
+        <ngb-pagination [collectionSize]="dataSource.total" [pageSize]="filters.per_page" [rotate]="true" [maxSize]="6"
+          [(page)]="filters.page" (pageChange)="getList()" [boundaryLinks]="true" class="d-flex justify-content-end">
+        </ngb-pagination>
+      </div>
+
+      <div align="center" *ngIf="dataSource.total == 0">Nenhum registro encontrado</div>
+
+    </div>
+
+  </div>
+</section>

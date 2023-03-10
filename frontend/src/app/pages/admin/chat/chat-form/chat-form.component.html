@@ -1,0 +1,7 @@
+<!-- <textarea rows="6" class="form-control" placeholder="Escreva sua mensagem" [disabled]="loading" [(ngModel)]="messageText"></textarea> -->
+<!-- <app-editor #editor atributo="messageText" [dados]="dados" [requerido]="true" *ngIf="status != 10"></app-editor> -->
+
+<div class="p-2" align="center">
+  <button class="btn btn-success" type="button" [disabled]="loading || status == 10"
+    (click)="makeQuestions()">Responder</button>
+</div>

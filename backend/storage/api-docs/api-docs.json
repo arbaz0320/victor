@@ -1,0 +1,1729 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SC Advogados",
+        "description": "Visão dos endpoints para o projeto SC Advogados",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/api/auth": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login",
+                "operationId": "a8d85330b96bde8699cb2e66b5be211d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/auth/me": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Exibe informações do usuário logado",
+                "operationId": "b9abb1a7a74670a19c215c2c133f14d8",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/contract-block": {
+            "get": {
+                "tags": [
+                    "contract-block"
+                ],
+                "summary": "Lista todas bloco de contrato",
+                "description": "Lista todas bloco de contrato",
+                "operationId": "213c0bd190140a690f620aa37215ab7c",
+                "responses": {
+                    "200": {
+                        "description": "Lista todas bloco de contrato"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "contract-block"
+                ],
+                "summary": "Edita um bloco de contrato",
+                "operationId": "a4f8646d2786bf5bba45815a40eb582e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "question": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "condition_type": {
+                                        "type": "integer"
+                                    },
+                                    "field_id": {
+                                        "type": "integer"
+                                    },
+                                    "field_value": {
+                                        "type": "string"
+                                    },
+                                    "position": {
+                                        "type": "integer"
+                                    },
+                                    "slug": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "contract-block"
+                ],
+                "summary": "Cadastra um novo bloco de contrato",
+                "operationId": "6884a976dee0b751b078cf5d9ab05316",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "question": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "condition_type": {
+                                        "type": "integer"
+                                    },
+                                    "field_id": {
+                                        "type": "integer"
+                                    },
+                                    "field_value": {
+                                        "type": "string"
+                                    },
+                                    "position": {
+                                        "type": "integer"
+                                    },
+                                    "slug": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/contract-block/{id}": {
+            "get": {
+                "tags": [
+                    "contract-block"
+                ],
+                "summary": "Exibe um bloco de contrato",
+                "operationId": "dd674a2a324c71c3d51b7b0482cb1b70",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "contract-block"
+                ],
+                "summary": "Remove um bloco de contrato",
+                "operationId": "8c520fadaafbd33771bd3cc4dc1906ae",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/contract-conditional": {
+            "get": {
+                "tags": [
+                    "contract-conditional"
+                ],
+                "summary": "Lista todas as condicionais de contrato",
+                "description": "Lista todas as condicionais de contrato",
+                "operationId": "16b321bac804cb38a1d6607de2d49511",
+                "responses": {
+                    "200": {
+                        "description": "Lista todas as condicionais de contrato cadastradas"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "contract-conditional"
+                ],
+                "summary": "Edita uma condicional de contrato",
+                "operationId": "74d9e6163e967adfb4a109bf3f3fc4ae",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "label": {
+                                        "type": "string"
+                                    },
+                                    "question": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "contract_block_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "contract-conditional"
+                ],
+                "summary": "Cadastra uma nova condicional de contrato",
+                "operationId": "2452d29f3a97b811d615356e5c3a6dec",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "label": {
+                                        "type": "string"
+                                    },
+                                    "question": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "contract_block_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/contract-conditional/{id}": {
+            "get": {
+                "tags": [
+                    "contract-conditional"
+                ],
+                "summary": "Exibe uma condicional de contrato",
+                "operationId": "47658b59287bd29cf320551db495dd33",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "contract-conditional"
+                ],
+                "summary": "Remove uma condicional de contrato",
+                "operationId": "d4711757e37f5547f47aac2810a8b34d",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/contract": {
+            "get": {
+                "tags": [
+                    "contract"
+                ],
+                "summary": "Lista todos os contratos",
+                "description": "Lista todos os contratos",
+                "operationId": "c3bbfa77118016ad81fb3f3e05faced1",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os contratos cadastrados"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "contract"
+                ],
+                "summary": "Edita um usuário",
+                "operationId": "6e707b3b124426a97f05590095f5e94e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "contract"
+                ],
+                "summary": "Cadastra um novo contrato",
+                "operationId": "e1c489bdab40fecf0f6cbe2ebba97b28",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "type_id": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/contract/{id}": {
+            "get": {
+                "tags": [
+                    "contract"
+                ],
+                "summary": "Exibe um contrato",
+                "operationId": "4e36f9c1998f07ccc2ed8614ca1bb6db",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "contract"
+                ],
+                "summary": "Remove um contrato",
+                "operationId": "4376a4ec865d4e01e01537675bd4d9a2",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/contract-type": {
+            "get": {
+                "tags": [
+                    "contract-type"
+                ],
+                "summary": "Lista todos os tipos de contratos",
+                "description": "Lista todos os tipos de contratos",
+                "operationId": "aa6bbb4688878d845f4b7dd8c2d236a1",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os tipos de contratos cadastrados"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "contract-type"
+                ],
+                "summary": "Editado um tipo de contrato",
+                "operationId": "f31c844cf7b21a337478dc8c7e992172",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "contract-type"
+                ],
+                "summary": "Cadastra um novo tipo de contrato",
+                "operationId": "b9be84612a106dea217115da82beca32",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/contract-type/{id}": {
+            "get": {
+                "tags": [
+                    "contract-type"
+                ],
+                "summary": "Exibe um tipo de contrato",
+                "operationId": "2d1e0226935ec8779c1ac51f3b985862",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "contract-type"
+                ],
+                "summary": "Remove um tipo de contrato",
+                "operationId": "66e8ff7809e7240e63990ae7069c41b0",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/coupon": {
+            "get": {
+                "tags": [
+                    "coupon"
+                ],
+                "summary": "Lista todos os cupons",
+                "description": "Lista todos os cupons",
+                "operationId": "b2959e07dc9e4c1b5a95f17483828a58",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os cupons cadastrados"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "coupon"
+                ],
+                "summary": "Editado um cupom",
+                "operationId": "2571d88d898ea6837e5ebbb21bd49914",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "number"
+                                    },
+                                    "discount_type": {
+                                        "description": "1 - por porcentagem, 2 - por valor",
+                                        "type": "integer"
+                                    },
+                                    "expire_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "coupon"
+                ],
+                "summary": "Cadastra um novo cupom",
+                "operationId": "67d4797061855e0a081955645c648c6c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "number"
+                                    },
+                                    "discount_type": {
+                                        "description": "1 - por porcentagem, 2 - por valor",
+                                        "type": "integer"
+                                    },
+                                    "expire_at": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/coupon/{id}": {
+            "get": {
+                "tags": [
+                    "coupon"
+                ],
+                "summary": "Exibe um tipo de contrato",
+                "operationId": "d7eae06c67fadc363b38a418c0330986",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "coupon"
+                ],
+                "summary": "Remove um cupom",
+                "operationId": "d240e9599d4469c893bf78b4e351378d",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/deposition": {
+            "get": {
+                "tags": [
+                    "deposition"
+                ],
+                "summary": "Lista todos os depoimentos",
+                "description": "Lista todos os depoimentos",
+                "operationId": "50811f0fccd8ca9a5a67c8286f18a6ad",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os depoimentos cadastrados"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "deposition"
+                ],
+                "summary": "Cadastra um novo depoimento",
+                "operationId": "84b10f6f7dcb345959b3180352c3427a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    },
+                                    "avatar": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/deposition/{id}": {
+            "get": {
+                "tags": [
+                    "deposition"
+                ],
+                "summary": "Exibe um depoimento",
+                "operationId": "54f46c4e035498cd7b968c9a9939d408",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "deposition"
+                ],
+                "summary": "Edita um depoimento",
+                "operationId": "e862505fe1a21ee9b7cf0e956a0c6681",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    },
+                                    "avatar": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "deposition"
+                ],
+                "summary": "Remove um depoimento",
+                "operationId": "717b19418b7dccccca7a6fdc027ac41c",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/message": {
+            "get": {
+                "tags": [
+                    "message"
+                ],
+                "summary": "Lista todos mensagens",
+                "description": "Lista todos mensagens",
+                "operationId": "a7c6abc72ab4d49342f875a1643ecea4",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos mensagens cadastrados"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "message"
+                ],
+                "summary": "Edita uma mesangem",
+                "operationId": "81c537c10f1bb93653f2a9f455e09f84",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "read": {
+                                        "description": "0 - não lida, 1 - lida",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "message"
+                ],
+                "summary": "Cadastra uma nova mensagem",
+                "operationId": "ee15771b1dadd0efb04ebd263be4f168",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer"
+                                    },
+                                    "message": {
+                                        "type": "text"
+                                    },
+                                    "read": {
+                                        "description": "0 - não lida, 1 - lida",
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/message/{id}": {
+            "get": {
+                "tags": [
+                    "message"
+                ],
+                "summary": "Exibe uma mensagem",
+                "operationId": "32f365188766e73f30a6c5b28dc2be6a",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "message"
+                ],
+                "summary": "Remove uma mensagem",
+                "operationId": "ef1554318c8c47cc8d96cde1c8b67454",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/plan": {
+            "get": {
+                "tags": [
+                    "plan"
+                ],
+                "summary": "Lista todos os planos",
+                "description": "Lista todos os planos",
+                "operationId": "294c28d04f1cf5a756e7a8e2cfbc89df",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os planos cadastrados"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "plan"
+                ],
+                "summary": "Cadastra um novo plano",
+                "operationId": "3c0ee287f14bb7c839b9d4793dc1f323",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "price_month": {
+                                        "type": "number"
+                                    },
+                                    "price_year": {
+                                        "type": "number"
+                                    },
+                                    "percentage_discount_questions": {
+                                        "type": "number"
+                                    },
+                                    "percentage_discount_contracts": {
+                                        "type": "number"
+                                    },
+                                    "status": {
+                                        "type": "boolean"
+                                    },
+                                    "recommended": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/plan/{id}": {
+            "get": {
+                "tags": [
+                    "plan"
+                ],
+                "summary": "Exibe um plano",
+                "operationId": "45bfacdd2a6118139d8ebcce12e2a3b0",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "plan"
+                ],
+                "summary": "Remove um plano",
+                "operationId": "86d9de8ed681fe5f4d3f5be01a090c25",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "api/plan/{id}": {
+            "put": {
+                "tags": [
+                    "plan"
+                ],
+                "summary": "Edita uma plano",
+                "operationId": "a2d6381488c2c564babe312367fe1866",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "price_month": {
+                                        "type": "number"
+                                    },
+                                    "price_year": {
+                                        "type": "number"
+                                    },
+                                    "percentage_discount_questions": {
+                                        "type": "number"
+                                    },
+                                    "percentage_discount_contracts": {
+                                        "type": "number"
+                                    },
+                                    "status": {
+                                        "type": "boolean"
+                                    },
+                                    "recommended": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/public-routes/plan": {
+            "get": {
+                "tags": [
+                    "public-routes"
+                ],
+                "summary": "Planos públicos",
+                "description": "Planos públicos",
+                "operationId": "e434a8306513a803511a9f3a51aab5fe",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os planos em modo público"
+                    }
+                }
+            }
+        },
+        "/api/public-routes/contract": {
+            "post": {
+                "tags": [
+                    "public-routes"
+                ],
+                "summary": "Contratos públicos",
+                "description": "Contratos públicos",
+                "operationId": "c34f483e3e6507d2ce758f4394b3e77f",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os comtratos em modo público"
+                    }
+                }
+            }
+        },
+        "/api/public-routes/user": {
+            "post": {
+                "tags": [
+                    "public-routes"
+                ],
+                "summary": "Cadastro de usuário em modo público",
+                "description": "Cadastro de usuário em modo público",
+                "operationId": "801028eca9bed6d19ce94c3547e62718",
+                "responses": {
+                    "200": {
+                        "description": "Cadastro de usuário em modo público"
+                    }
+                }
+            }
+        },
+        "/api/public-routes/deposition": {
+            "get": {
+                "tags": [
+                    "public-routes"
+                ],
+                "summary": "Lista depoimentos em modo público",
+                "description": "Lista depoimentos em modo público",
+                "operationId": "143084912ef6e6abcaf3c2161ead2e32",
+                "responses": {
+                    "200": {
+                        "description": "Lista depoimentos em modo público"
+                    }
+                }
+            }
+        },
+        "/api/public-routes/right-area": {
+            "get": {
+                "tags": [
+                    "public-routes"
+                ],
+                "summary": "Lista os direitos em modo público",
+                "description": "Lista os direitos em modo público",
+                "operationId": "18659ab2360eccb858bb11a0395a4588",
+                "responses": {
+                    "200": {
+                        "description": "Lista os direitos em modo público"
+                    }
+                }
+            }
+        },
+        "/api/public-routes/site-info": {
+            "get": {
+                "tags": [
+                    "public-routes"
+                ],
+                "summary": "Lista as informações do site em modo público",
+                "description": "Lista as informações do site em modo público",
+                "operationId": "1de00decc8fdae5547c0a131f9b38e16",
+                "responses": {
+                    "200": {
+                        "description": "Lista as informações do site em modo público"
+                    }
+                }
+            }
+        },
+        "/api/right-area": {
+            "get": {
+                "tags": [
+                    "right-area"
+                ],
+                "summary": "Lista todos os direitos",
+                "description": "Lista todos os direitos",
+                "operationId": "fc4b30799f9e4a61509e4defbe70df34",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os direitos cadastrados"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "right-area"
+                ],
+                "summary": "Cadastra um novo direito na área de direitos no site",
+                "operationId": "f269f8646bb4e36e4e3dfdb35cd46eca",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "right-area"
+                ],
+                "summary": "Cadastra um novo direito na área de direitos no site",
+                "operationId": "2865dddafba2aeb677447c41097a27e5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/right-area/{id}": {
+            "get": {
+                "tags": [
+                    "right-area"
+                ],
+                "summary": "Exibe um direito da área de direitos do site",
+                "operationId": "eafa2e7dd8e959a724dc8c389c00711b",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "right-area"
+                ],
+                "summary": "Remove um elemento da área de direitos",
+                "operationId": "54d77923b49550050c29721840b64ccf",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/role": {
+            "get": {
+                "tags": [
+                    "role"
+                ],
+                "summary": "Lista todas as roles",
+                "description": "Lista todas as roles",
+                "operationId": "5382f1f8081ec0784c101b952835e6f7",
+                "responses": {
+                    "200": {
+                        "description": "Lista todas as roles cadastradas"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "role"
+                ],
+                "summary": "Edita uma role",
+                "operationId": "ceda9a6ac7d304e318533788d6cb916a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "role"
+                ],
+                "summary": "Cadastra uma nova role",
+                "operationId": "9520944bc105c406a9d07398b2ea3a17",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/role/{id}": {
+            "get": {
+                "tags": [
+                    "role"
+                ],
+                "summary": "Exibe uma role",
+                "operationId": "91d6146cdc7b03c517b49edc2fcba6b3",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "role"
+                ],
+                "summary": "Remove uma role",
+                "operationId": "f6c38af5a70dd9884b06e9f1dc10cfb7",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/site-info": {
+            "get": {
+                "tags": [
+                    "site-info"
+                ],
+                "summary": "Lista todos os informações do site",
+                "description": "Lista todos os informações do site",
+                "operationId": "53d0541aa9e76784011794776e4ec167",
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os informações do site cadastradas"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "site-info"
+                ],
+                "summary": "Edita as informações do site",
+                "operationId": "b9d1f7f0062ab7039302c16fd7c1f338",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "banner_title": {
+                                        "type": "string"
+                                    },
+                                    "banner_text": {
+                                        "type": "text"
+                                    },
+                                    "section1_title": {
+                                        "type": "string"
+                                    },
+                                    "section1_text": {
+                                        "type": "text"
+                                    },
+                                    "section2_title": {
+                                        "type": "string"
+                                    },
+                                    "section2_text": {
+                                        "type": "text"
+                                    },
+                                    "section3_title": {
+                                        "type": "string"
+                                    },
+                                    "section3_text": {
+                                        "type": "text"
+                                    },
+                                    "link_facebook": {
+                                        "type": "string"
+                                    },
+                                    "link_instagram": {
+                                        "type": "string"
+                                    },
+                                    "link_linkedin": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "phone1": {
+                                        "type": "string"
+                                    },
+                                    "phone2": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Lista todos os usuários",
+                "description": "Lista todos os usuários",
+                "operationId": "971db9bc974c0e607288cfe7ecc10096",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "integer": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Lista todos os usuários cadastrados"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Cadastra um novo usuário",
+                "operationId": "089999749fbdec98922de2f74ba8d540",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "plan_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Exibe um usuário",
+                "operationId": "d8f696420bea235f4916124c9ba1c507",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Edita um usuário",
+                "operationId": "5e09c26a0abb2b1bf040badb2d9c69ba",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "plan_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Remove um usuário",
+                "operationId": "f8d7aea516ee464d0afee90f3a1a1722",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "auth",
+            "description": "Autorização"
+        },
+        {
+            "name": "contract-block",
+            "description": "Bloco de um contrato"
+        },
+        {
+            "name": "contract-conditional",
+            "description": "Condicionais de um contrato"
+        },
+        {
+            "name": "contract",
+            "description": "Contratos"
+        },
+        {
+            "name": "contract-type",
+            "description": "Tipos de contrato"
+        },
+        {
+            "name": "coupon",
+            "description": "Cupons"
+        },
+        {
+            "name": "deposition",
+            "description": "Depoimentos"
+        },
+        {
+            "name": "message",
+            "description": "Mensagens"
+        },
+        {
+            "name": "plan",
+            "description": "Planos"
+        },
+        {
+            "name": "public-routes",
+            "description": "Rotas públicas"
+        },
+        {
+            "name": "right-area",
+            "description": "Direitos da área de direitos no site"
+        },
+        {
+            "name": "role",
+            "description": "Permissões"
+        },
+        {
+            "name": "site-info",
+            "description": "Informações do site"
+        },
+        {
+            "name": "user",
+            "description": "Usuários"
+        },
+        {
+            "name": "user-plan",
+            "description": "Planos do usuário"
+        }
+    ]
+}

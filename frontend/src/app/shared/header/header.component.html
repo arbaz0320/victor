@@ -1,0 +1,169 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+  <div class="d-flex align-items-center justify-content-between">
+    <a routerLink="/dashboard" class="d-flex align-items-center">
+      <img src="assets/logo-landscape.png" alt="SC Advogados" class="logo-sc d-none d-lg-block me-5">
+    </a>
+    <i class="bi bi-list toggle-sidebar-btn" (click)="toggleMenu()"></i>
+  </div><!-- End Logo -->
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+
+      <li class="nav-item dropdown" ngbDropdown *ngIf="false">
+
+        <a class="nav-link nav-icon dropDownNotArrow" href="javascript:void(0)" ngbDropdownToggle>
+          <i class="bi bi-bell"></i>
+          <span class="badge bg-primary badge-number">4</span>
+        </a><!-- End Notification Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" ngbDropdownMenu>
+          <li class="dropdown-header">
+            You have 4 new notifications
+            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li class="notification-item">
+            <i class="bi bi-exclamation-circle text-warning"></i>
+            <div>
+              <h4>Lorem Ipsum</h4>
+              <p>Quae dolorem earum veritatis oditseno</p>
+              <p>30 min. ago</p>
+            </div>
+          </li>
+
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li class="notification-item">
+            <i class="bi bi-x-circle text-danger"></i>
+            <div>
+              <h4>Atque rerum nesciunt</h4>
+              <p>Quae dolorem earum veritatis oditseno</p>
+              <p>1 hr. ago</p>
+            </div>
+          </li>
+
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li class="notification-item">
+            <i class="bi bi-check-circle text-success"></i>
+            <div>
+              <h4>Sit rerum fuga</h4>
+              <p>Quae dolorem earum veritatis oditseno</p>
+              <p>2 hrs. ago</p>
+            </div>
+          </li>
+
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li class="notification-item">
+            <i class="bi bi-info-circle text-primary"></i>
+            <div>
+              <h4>Dicta reprehenderit</h4>
+              <p>Quae dolorem earum veritatis oditseno</p>
+              <p>4 hrs. ago</p>
+            </div>
+          </li>
+
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li class="dropdown-footer">
+            <a href="#">Show all notifications</a>
+          </li>
+
+        </ul><!-- End Notification Dropdown Items -->
+
+      </li><!-- End Notification Nav -->
+
+      <li class="nav-item dropdown" ngbDropdown #messagesDrop="ngbDropdown" placement="bottom-end">
+
+        <a class="nav-link nav-icon dropDownNotArrow" href="javascript:void(0)" ngbDropdownToggle>
+          <i class="bi bi-chat-left-text"></i>
+          <span class="badge bg-success badge-number"
+            *ngIf="tools.getMessageNotRead(messages) > 0">{{tools.getMessageNotRead(messages)}}</span>
+        </a><!-- End Messages Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages" style="min-width: 350px;"
+          ngbDropdownMenu>
+          <ng-container *ngIf="tools.getMessageNotRead(messages) > 0">
+            <li class="dropdown-header">
+              Você tem {{tools.getMessageNotRead(messages)}} novas mensagens
+              <a href="javascript:void(0)" routerLink="/chat" (click)="messagesDrop.close()"><span
+                  class="badge rounded-pill bg-primary p-2 ms-2">Ver
+                  Todas</span></a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+          </ng-container>
+
+          <ng-container *ngFor="let item of messages">
+            <li class="message-item">
+              <a href="javascript:void(0)" routerLink="/chat" [queryParams]="{chat_id: item.message_id ?? item.id}"
+                (click)="messagesDrop.close()">
+                <!-- <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle"> -->
+                <span class="circle-initials bg-sc me-3">{{tools.getInitials(item.user.name)}}</span>
+                <div>
+                  <h4 *ngIf="item.user">{{item.user.name}}</h4>
+                  <p>{{item.message}}</p>
+                  <p>{{tools.getTime(item.created_at)}}</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+          </ng-container>
+
+
+          <li class="dropdown-footer">
+            <a href="javascript:void(0)" routerLink="/chat" (click)="messagesDrop.close()">Ver todas</a>
+          </li>
+
+        </ul><!-- End Messages Dropdown Items -->
+
+      </li><!-- End Messages Nav -->
+
+      <li class="nav-item dropdown pe-3" ngbDropdown *ngIf="user.id">
+
+        <a class="nav-link nav-profile d-flex align-items-center pe-1 dropDownNotArrow" href="javascript:void(0)"
+          ngbDropdownToggle>
+          <!-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
+          <span class="circle-initials bg-sc">{{tools.getInitials(user.name)}}</span>
+          <!-- <span class="d-none d-md-block ps-2">{{user.name }}</span> -->
+        </a><!-- End Profile Iamge Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" ngbDropdownMenu>
+          <li class="dropdown-header">
+            <h6>{{user.name }}</h6>
+            <!-- <span>Web Designer</span> -->
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Sair</span>
+            </a>
+          </li>
+
+        </ul><!-- End Profile Dropdown Items -->
+      </li><!-- End Profile Nav -->
+
+    </ul>
+  </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->

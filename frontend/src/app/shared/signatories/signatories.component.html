@@ -1,0 +1,80 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <!-- <th scope="col">Pergunta</th> -->
+      <th scope="col">Tipo</th>
+      <th scope="col" class="text-end">
+        <button type="button" class="btn btn-sm btn-sc" (click)="openForm(modalForm)">Nova assinatura</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dataSource.data">
+      <th scope="row">{{item.id}}</th>
+      <!-- <td>{{item.question }}</td> -->
+      <td>{{getType(item.type)}}</td>
+      <td class="text-end">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-secondary me-1" (click)="openForm(modalForm, item)">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-danger" (click)="deleteQuestion(item)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <div *ngIf="dataSource.data.length > 0" class="mr-2">
+  <ngb-pagination [collectionSize]="dataSource.total" [pageSize]="filters.per_page" [rotate]="true" [maxSize]="6"
+    [(page)]="filters.page" (pageChange)="getList()" [boundaryLinks]="true" class="d-flex justify-content-end">
+  </ngb-pagination>
+</div> -->
+
+<div align="center" *ngIf="dataSource.total == 0">Nenhum registro encontrado</div>
+
+
+<ng-template #modalForm let-modal>
+  <form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(modal, form)">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{dados.id ? 'Alterar' : 'Nova'}} assinatura</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close(); dados = {};"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col-sm-8 mb-2">
+          <b>Pergunta:</b>
+          <input type="text" required class="form-control" maxlength="255" [(ngModel)]="dados.question" name="question"
+            [ngClass]="{'is-invalid': tools.getValidateInput(form, 'question')}">
+        </div>
+
+        <div class="col-sm-4 mb-2">
+          <b>Tipo:</b>
+          <select required class="form-select" [(ngModel)]="dados.type" name="type"
+            [ngClass]="{'is-invalid': tools.getValidateInput(form, 'type')}">
+            <option value="parte">Parte</option>
+            <option value="testemunha">Testemunha</option>
+            <option value="fiador">Fiador</option>
+          </select>
+        </div>
+
+        <div class="col-sm-12 mb-2">
+          <b>Descrição:</b>
+          <textarea rows="4" required class="form-control" maxlength="255" [(ngModel)]="dados.description"
+            name="description" [ngClass]="{'is-invalid': tools.getValidateInput(form, 'description')}"></textarea>
+          <small class="text-secondary">caracteres disponíveis: {{tools.getLength(dados.description, 255)}}</small>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-sc">Salvar</button>
+    </div>
+  </form>
+</ng-template>

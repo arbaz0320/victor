@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #cc0000;
+}
+
+#cardPaymentBrick_container section {
+  padding-top: 0;
+}
+
+.contract-render ol {
+  list-style-type: decimal;
+  padding-inline-start: 40px;
+}
+.contract-render ul {
+  list-style-type: disc;
+  padding-inline-start: 40px;
+}

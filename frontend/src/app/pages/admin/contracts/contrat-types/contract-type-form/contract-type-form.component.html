@@ -1,0 +1,27 @@
+<form #form="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit(form)" class="needs-validation"
+  novalidate>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{dados.id ? 'Editar':'Novo'}} Tipo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-sm-12 form-group">
+        <b>Título:</b>
+        <input type="text" required class="form-control" name="title" [(ngModel)]="dados.title"
+          [ngClass]="{'is-invalid': tools.getValidateInput(form, 'title')}">
+        <div class="invalid-feedback">
+          Preencha o TÍTULO.
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer p-2">
+    <button type="submit" class="btn btn-sc" [disabled]="loading">
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="loading"></span>
+      <span>Salvar</span>
+    </button>
+  </div>
+</form>
