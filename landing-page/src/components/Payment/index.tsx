@@ -47,7 +47,7 @@ export default function Payment({
                      Here you can hide loadings from your site, for example.
                    */
                  },
-                 onSubmit: ({ selectedPaymentMethod, formData }) => {
+                 onSubmit: ({ selectedPaymentMethod : any, formData }) => {
                    // callback called when clicking on the data submission button
                   
                      return new Promise((resolve, reject) => {
