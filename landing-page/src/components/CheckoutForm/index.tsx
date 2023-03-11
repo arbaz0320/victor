@@ -592,7 +592,7 @@ const options = {
                   />
                 )}
           {/*stripe button*/}
-                 {tokenData && total > 0 &&  (
+                 {isReady && tokenData && total > 0 &&  (
                   <Elements stripe={stripePromise} options={options} >
                     <CheckoutForm />
                   </Elements>
