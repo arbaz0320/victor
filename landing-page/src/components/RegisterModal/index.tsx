@@ -21,6 +21,7 @@ interface RegistrationProps {
     name: string;
     email: string;
     password: string;
+    phone: string;
     confirmPassword: string;
     user_terms: boolean;
 }
@@ -70,9 +71,10 @@ export const RegisterModal = ({
         const dados = {
             name: data.name,
             email: data.email,
+            phone: data.phone,
             password: data.password,
         };
-
+        console.log(data);
         try {
             await api.post("public-routes/user", dados);
             modal.setCustomModal({
@@ -82,9 +84,9 @@ export const RegisterModal = ({
                 text: "Agora você já pode acessar a sua conta!",
             });
             setTimeout(() => {
-                modal.handleCustomModalClose();
-                setIsQuickViewOpen(false);
-                signIn({ email: data.email, password: data.password, origin: 'web' });
+                //modal.handleCustomModalClose();
+                //setIsQuickViewOpen(false);
+                //signIn({ email: data.email, password: data.password, origin: 'web' });
             }, 1000);
         } catch (e) {
             modal.setCustomModal({
@@ -190,6 +192,28 @@ export const RegisterModal = ({
                                                     {errors.name && (
                                                         <span className="text-red-600">
                                                             {errors.name.message}
+                                                        </span>
+                                                    )}
+                                                </div>
+
+                                                 <div className="col-span-6 sm:col-span-3">
+                                                    <label
+                                                        htmlFor="phone"
+                                                        className="block text-sm font-medium text-gray-700"
+                                                    >
+                                                        Telefone
+                                                    </label>
+                                                    <input
+                                                        {...register("phone")}
+                                                        type="text"
+                                                        name="phone"
+                                                        id="phone"
+                                                        autoComplete="given-phone"
+                                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                                                    />
+                                                    {errors.phone && (
+                                                        <span className="text-red-600">
+                                                            {errors.phone.message}
                                                         </span>
                                                     )}
                                                 </div>
