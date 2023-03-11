@@ -11,6 +11,12 @@ type PaymentProps = {
     onError?: Function;
 };
 
+declare global {
+  interface Window {
+    paymentBrickController: any;  // this will be your variable name
+  }
+}
+
 export default function Payment({
     email,
     total,
@@ -69,7 +75,7 @@ export default function Payment({
                      });
                    
                  },
-                 onError: (error:any) => {
+                 onError: (error : any) => {
                    // callback called for all Brick error cases
                    console.error(error);
                  },
@@ -117,8 +123,6 @@ export default function Payment({
                 />
             </div>
             <div id="paymentBrick_container" hidden={loading}></div>
-{/*            <a href="https://www.mercadopago.com.br/payments/123456789/ticket?caller_id=123456&hash=123e4567-e89b-12d3-a456-426655440000" target="_blank">Pay with Pix</a>*/}
-
         </>
     );
 }
